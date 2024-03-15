@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Chat Home Page</title>
+  <style>
+    *{
+      color: #ffffff;
+      font-family: 'Jost', sans-serif;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .navbar {
+      margin: 0 !important;
+      width: 100% !important;
+      background-color: #000000 !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      color: #ffffff !important;
+      
+    }
+    .navbar-toggler-icon {
+      background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3e%3cpath stroke="rgba(225, 225, 225, 0.75)" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22" /%3e%3c/svg%3e') !important;
+      border-color: white !important;
+    }
+    .navbar-brand{
+      color: #ffffff !important;
+      font-size: 25px;
+    }
+
+    .nav-item a{
+      color: #ffffff !important;
+      font-size: 20px;
+      font-family: 'Jost', sans-serif;
+    }
+    .nav-item a:hover{
+      color: #000000 !important;
+      font-size: 20px;
+      background-color: #ffffff;
+      border-radius: 6px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    button:hover {
+      background-color: #413f3f;
+      color: white;
+    }
+    .content{
+        align-items: center;
+        text-align: center;
+        margin-top: 30px;
+        padding: 10px;
+    }
+
+    .body-content {
+        text-align: center;
+    }
+
+    .typing-text {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .1em;
+        animation: typing 4s steps(20, end) infinite, blink-caret .75s step-end infinite;
+        color: #ffffff; /* Text color */
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Text shadow */
+        font-family: Arial, sans-serif; /* Font family */
+        font-size: 2.5em; /* Initial font size */
+    }
+
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes blink-caret {
+        from,
+        to {
+            border-color: transparent;
+        }
+        50% {
+            border-color: #333; /* Cursor color */
+        }
+    }
+
+    h3 {
+        font-size: 30px; /* Secondary text font size */
+        color: #adadad; /* Secondary text color */
+        margin-top: 20px;
+    }
+
+    /* Image styles */
+    .image {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .image img {
+        max-width: 100%; /* Ensure image does not exceed container width */
+        height: auto; 
+        filter:  invert(100%) brightness(65%);/* Maintain aspect ratio */
+    }
+
+    /* App section styles */
+    .app-section {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column; /* Updated to column */
+        align-items: center; /* Updated to center */
+        padding: 20px;
+        background-color: #171717;
+        border-radius: 10px;
+    }
+
+    .app-icon {
+        margin-bottom: 20px; /* Added margin bottom */
+    }
+
+    .app-title h2 {
+        color: #ffffff;
+        font-size: 30px;
+        margin-left: 10px;
+        margin-bottom: 10px; /* Added margin bottom */
+    }
+
+    .download-size {
+        color: #ffffff;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-left: 65px;
+    }
+
+    /* Responsive styles for app section */
+    @media only screen and (max-width: 768px) {
+        .app-section {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .app-icon {
+            margin-right: 0;
+            margin-bottom: 20px;
+            border: 1px solid white;
+        }
+    }
+
+    .btn{
+      margin-left: 60px;
+      width: 180px;
+    }
+
+    .about-section {
+        background-color: #333333;
+        color: #ffffff;
+        padding: 50px 20px; /* Adjust padding as needed */
+        text-align: center;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+
+    .about-section h2 {
+        font-size: 2.5em; /* Adjust heading font size */
+    }
+
+    .about-section p {
+        font-size: 1.2em; /* Adjust paragraph font size */
+        line-height: 1.6; /* Adjust line height for better readability */
+    }
+
+    @media only screen and (max-width: 768px) {
+        /* Adjust styles for smaller screens */
+        .about-section {
+            padding: 30px 10px; /* Adjust padding for smaller screens */
+        }
+    }
+
+    .app-snippets {
+        background-color: #000000;
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .scroll-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .scroll-content img {
+        width: 150px;
+        max-height: 200px;
+        margin: 0 10px;
+    }
+    .carousel-item img {
+    max-width: 100%; /* Adjust maximum width */
+    max-height: 850px; /* Adjust maximum height */
+    margin: 0 auto; /* Center the images horizontally */
+}
+.app_release{
+  color: white;
+  text-decoration: none;
+}.contact-section {
+    background-color: #171717;
+    color: #ffffff;
+    padding: 50px 20px; /* Adjust padding as needed */
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.contact-section h2 {
+    font-size: 2.5em; /* Adjust heading font size */
+}
+
+.contact-section p {
+    font-size: 1.2em; /* Adjust paragraph font size */
+    line-height: 1.6; /* Adjust line height for better readability */
+}
+.privacy-section {
+    background-color: #171717;
+    color: #ffffff;
+    padding: 50px 20px; /* Adjust padding as needed */
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.privacy-section h2 {
+    font-size: 2.5em; /* Adjust heading font size */
+}
+
+.privacy-section p {
+    font-size: 1.2em; /* Adjust paragraph font size */
+    line-height: 1.6; /* Adjust line height for better readability */
+}
+#spiritofaiofficial{
+  font-size: 14px;
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar sticky-top navbar-light bg-light">
+    <a href="#" class="navbar-brand"><img src="newLOGO.jpeg" width="100px" height="90px"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#privacy-policy" class="nav-link">Privacy Policy</a>
+      </li>
+        <li class="nav-item">
+          <a href="#contact-us" class="nav-link">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="content">
+    <div class="body-content">
+        <h1 class="typing-text">SpiritOfAI</h1>
+        <h3>Empowering club members with seamless event registration and performance tracking.</h3>
+    </div>
+    <div class="image">
+        <img src="https://i.postimg.cc/PqtrLYyg/deep-learning-with-keras-machine-learning-artificial-intelligence-others-01bd51ee474dc6f3972b641668e.png">
+    </div>
+   <div class="app-section">
+      <div class="app-icon">
+        <img src="https://i.postimg.cc/wjkRb6Gd/newLOGO.jpg" alt="App Icon" width="100px" height="100px">
+      </div>
+      <div class="app-details">
+        <div class="app-title">
+          <h2>SpiritOfAI</h2>
+        </div>
+        <div class="app-info">
+          <p class="download-size">Download Size: 25MB</p>
+        </div>
+        <div class="download">
+          <button class="btn btn-primary"><a href="/app-release.apk" download class="app_release">Download</a></button>
+        </div>
+      </div>
+    </div>
+    <div class="app-snippets">
+      <h2>App Snippets</h2>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <img src="https://res.cloudinary.com/dwmyxihf3/image/upload/v1710435174/Screenshot_20240313_150756_wsvxkx.jpg" class="d-block w-80" alt="Screenshot 1" height="500px">
+              </div>
+              <div class="carousel-item">
+                  <img src="https://res.cloudinary.com/dwmyxihf3/image/upload/v1710435175/Screenshot_20240313_150845_quqatl.jpg" class="d-block w-80" alt="Screenshot 2"height="500px">
+              </div>
+              <!-- Add more carousel items as needed -->
+              <div class="carousel-item">
+                  <img src="https://res.cloudinary.com/dwmyxihf3/image/upload/v1710435173/Screenshot_20240313_150858_iyfcag.jpg" class="d-block w-80" alt="Screenshot 3"height="500px">
+              </div>
+              <div class="carousel-item">
+                  <img src="https://res.cloudinary.com/dwmyxihf3/image/upload/v1710435172/Screenshot_20240313_150851_gvuh16.jpg" class="d-block w-80" alt="Screenshot 4"height="500px">
+              </div>
+              <div class="carousel-item">
+                  <img src="https://res.cloudinary.com/dwmyxihf3/image/upload/v1710435173/Screenshot_20240313_150833_hkfxhv.jpg" class="d-block w-80" alt="Screenshot 5"height="500px">
+              </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
+      </div>
+  </div>
+  <section id="privacy-policy" class="privacy-section">
+    <div class="container">
+      <h2>Privacy Policy</h2>
+        <h2 id="spiritofaiofficial">SpiritOfAI Privacy Policy
+
+          Collection & Use: Personal data may be collected to enhance the service, but it's not shared.
+          
+          Cookies & Log Data: The app may use cookies and collect log data for improvement.
+          
+          Service Providers: Third-party services may be used but won't access personal data.
+          
+          Security: Measures are taken, but absolute security isn't guaranteed.
+          
+          External Links: External sites are not controlled and have their own policies.
+          
+          Children’s Privacy: The service isn't for children under 13.
+          
+          Changes: The policy may change, users should check periodically.
+          
+          Contact: For questions, email skmdkaif321@gmail.com.
+          
+          (Effective: 2024-03-14)
+          
+          </h2>
+        <!-- Add your privacy policy content here -->
+    </div>
+</section>
+   <!-- Contact Us Section -->
+<section id="contact-us" class="contact-section">
+  <div class="container">
+      <h2>Contact Us</h2>
+      <p>Feel free to reach out to us for any inquiries or feedback.</p>
+      <div class="contact-info">
+          <p>Email: spiritofaiofficial@gamil.com</p>
+          <p>Phone: +91 9347537057</p>
+      </div>
+      <!-- You can also add a contact form here if you want -->
+  </div>
+</section>
+
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.querySelector(".scroll-container");
+        const scrollLeftBtn = document.getElementById("scroll-left-btn");
+        const scrollRightBtn = document.getElementById("scroll-right-btn");
+
+        scrollLeftBtn.addEventListener("click", function() {
+            container.scrollBy({
+                left: -200, // Adjust scroll distance as needed
+                behavior: "smooth"
+            });
+        });
+
+        scrollRightBtn.addEventListener("click", function() {
+            container.scrollBy({
+                left: 200, // Adjust scroll distance as needed
+                behavior: "smooth"
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
